@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DialogUtilsLibrary</string>
+    <string name="close">关闭</string>
+    <string name="complete">完成</string>
+</resources>

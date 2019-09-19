@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg_rounded_corners"
+              android:orientation="vertical">
+
+    <!--通用对话框-->
+    <TextView
+            android:id="@+id/tv_custom_dialog_setting_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3dp"
+            android:text="发现最新版本是否更新"
+            android:textColor="@color/home_text"
+            android:textSize="16dp"/>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/home_line"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/tv_custom_dialog_setting_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners_left_bottom"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="取消"
+                android:textColor="@color/baby_blue"
+                android:textSize="16dp"/>
+
+        <View
+
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/home_line"/>
+
+        <TextView
+                android:id="@+id/tv_custom_dialog_setting_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners_right_bottom"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="更新"
+                android:textColor="@color/baby_blue"
+                android:textSize="16dp"/>
+    </LinearLayout>
+</LinearLayout>
+
