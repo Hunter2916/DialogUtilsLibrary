@@ -2,8 +2,8 @@ package com.example.dialog.library.activity
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dialog.library.R
 import com.example.dialog.library.adapter.DialogAdapter
 import com.example.dialog.library.bean.DialogBean
