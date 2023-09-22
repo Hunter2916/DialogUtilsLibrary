@@ -1,21 +1,39 @@
 package com.example.dialog.dialoglib.dialog;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.FloatEvaluator;
+import android.animation.IntEvaluator;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.PathInterpolator;
 import android.widget.*;
+
+import androidx.annotation.NonNull;
+
 import com.example.dialog.dialoglib.R;
 import com.example.dialog.dialoglib.adapter.ListAdapters;
 import com.example.dialog.dialoglib.listener.OnDialogClickListener;
 import com.example.dialog.dialoglib.listener.OnDialogEditListener;
 import com.example.dialog.dialoglib.listener.OnDialogListListener;
+import com.example.dialog.dialoglib.utils.EaseCubicInterpolator;
+import com.example.dialog.dialoglib.utils.PointEvaluator;
 import com.example.dialog.dialoglib.utils.ScreenUtils;
+import com.example.dialog.dialoglib.utils.SpringScalingInterpolator;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.logging.LogRecord;
 
 /***
  * 对话框
@@ -27,6 +45,7 @@ public class DialogManager {
     private OnDialogListListener mSaveListener;
     private OnDialogEditListener mSaveCancelListener;
     private Context mContext;
+    private AnimatorSet set;
 
     public DialogManager(Context context) {
         this.mContext = context;
@@ -280,8 +299,9 @@ public class DialogManager {
         Window dialogWindow = mDialog.getWindow();
         WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
         p.width = (int) (ScreenUtils.getScreenWidth(mContext) * 0.80); // 宽度设置为屏幕的0.80
+        p.height = (int) (ScreenUtils.getScreenHeight(mContext) * 0.6);
         dialogWindow.setAttributes(p);
-
+        starAnimation(dialogWindow.getDecorView());
         //点击屏幕外侧，dialog不消失
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
@@ -435,6 +455,63 @@ public class DialogManager {
         }
     }
 
+    private void starAnimation(View view) {
+//        ObjectAnimator animatorX = ObjectAnimator.ofFloat(view,"scaleX",0.5f,1.0f);
+//        ObjectAnimator animatorY = ObjectAnimator.ofFloat(view,"scaleY",0.5f,1.0f);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(view, "translationY", 0, -100, 0);
+//        animatorY.setEvaluator(new PointEvaluator());
+        animatorY.setEvaluator(new FloatEvaluator());
+        set = new AnimatorSet();
+        set.setDuration(5000);
+//        set.setInterpolator(new SpringScalingInterpolator(0.4f));
+//        set.setInterpolator(new EaseCubicInterpolator(0f,1.5f,0.53f,0.02f));
+        set.setInterpolator(new EaseCubicInterpolator(0.14f, 0.71f, 0.40f, 0.87f));
+//        set.setInterpolator(new PathInterpolator(.24f, .9f, .24f, 1f));
+
+        set.playTogether(animatorY);
+        set.start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SystemClock.sleep(1500);
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SystemClock.sleep(1800);
+                handler.sendEmptyMessage(2);
+            }
+        }).start();
+//        pauseAnimation(set);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case 1:
+                    pauseAnimation(set);
+                    break;
+                case 2:
+                    set.start();
+                    break;
+            }
+
+        }
+    };
+
+    private void pauseAnimation(AnimatorSet closeAnimator) {
+        if (closeAnimator != null) {
+            if (closeAnimator.isRunning()) {
+                Log.i("pauseAnimation", "closeAnimator is running");
+            }
+            closeAnimator.pause();
+            closeAnimator.removeAllListeners();
+        }
+    }
 
 }
 
