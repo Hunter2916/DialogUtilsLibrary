@@ -1,6 +1,8 @@
 package com.example.dialog.library.adapter
 
+import android.os.Build
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.dialog.dialoglib.dialog.DialogManager
@@ -9,6 +11,7 @@ import com.example.dialog.dialoglib.listener.OnDialogEditListener
 import com.example.dialog.library.R
 import com.example.dialog.library.bean.DialogBean
 
+
 /**
  *@uthor:created by Hunter2916
  *时间:2019/9/5  17:01
@@ -16,6 +19,7 @@ import com.example.dialog.library.bean.DialogBean
  **/
 class DialogAdapter(data: List<DialogBean>) :
     BaseQuickAdapter<DialogBean, BaseViewHolder>(R.layout.item_recycler_dialog, data) {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     override fun convert(helper: BaseViewHolder, item: DialogBean?) {
         val mDialog = DialogManager(mContext)
         helper.setText(R.id.id, item!!.id)

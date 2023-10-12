@@ -9,6 +9,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -20,6 +23,7 @@ import android.view.animation.PathInterpolator;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.dialog.dialoglib.R;
 import com.example.dialog.dialoglib.adapter.ListAdapters;
@@ -44,7 +48,7 @@ public class DialogManager {
     private OnDialogClickListener mListener;
     private OnDialogListListener mSaveListener;
     private OnDialogEditListener mSaveCancelListener;
-    private Context mContext;
+    private final Context mContext;
     private AnimatorSet set;
 
     public DialogManager(Context context) {
@@ -69,6 +73,7 @@ public class DialogManager {
      * @param
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public void mySettingBuilder(String messageStr) {
         setDialogHint(messageStr, null, null);
     }
@@ -79,6 +84,7 @@ public class DialogManager {
      * @param
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public void mySettingBuilder(String messageStr, String confirmStr) {
         setDialogHint(messageStr, confirmStr, null);
     }
@@ -297,13 +303,19 @@ public class DialogManager {
         mDialog.setContentView(CustomView);
         mDialog.setCanceledOnTouchOutside(false);
         Window dialogWindow = mDialog.getWindow();
+        dialogWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogWindow.setDimAmount(0.6f);
+        dialogWindow.getDecorView().setPadding(70,70,70,70);
         WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-        p.width = (int) (ScreenUtils.getScreenWidth(mContext) * 0.80); // 宽度设置为屏幕的0.80
-        p.height = (int) (ScreenUtils.getScreenHeight(mContext) * 0.6);
+//        p.width = (int) (ScreenUtils.getScreenWidth(mContext) * 0.80); // 宽度设置为屏幕的0.80
+        p.width = 864; // 宽度设置为屏幕的0.80
+//        p.height = (int) (ScreenUtils.getScreenHeight(mContext) * 0.6);
         dialogWindow.setAttributes(p);
-        starAnimation(dialogWindow.getDecorView());
+//        dialogWindow.setDimAmount(0f);
+        starAnimation(CustomView);
+
         //点击屏幕外侧，dialog不消失
-        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.setCanceledOnTouchOutside(true);
         mDialog.show();
     }
 
@@ -458,14 +470,15 @@ public class DialogManager {
     private void starAnimation(View view) {
 //        ObjectAnimator animatorX = ObjectAnimator.ofFloat(view,"scaleX",0.5f,1.0f);
 //        ObjectAnimator animatorY = ObjectAnimator.ofFloat(view,"scaleY",0.5f,1.0f);
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(view, "translationY", 0, -100, 0);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(view, "translationY", 0, 70, 0);
 //        animatorY.setEvaluator(new PointEvaluator());
         animatorY.setEvaluator(new FloatEvaluator());
         set = new AnimatorSet();
-        set.setDuration(5000);
+        set.setDuration(3000);
 //        set.setInterpolator(new SpringScalingInterpolator(0.4f));
 //        set.setInterpolator(new EaseCubicInterpolator(0f,1.5f,0.53f,0.02f));
-        set.setInterpolator(new EaseCubicInterpolator(0.14f, 0.71f, 0.40f, 0.87f));
+//        set.setInterpolator(new EaseCubicInterpolator(0.37f, 0.75f, 0.46f, 1f));
+        set.setInterpolator(new EaseCubicInterpolator(0.3f, 0.0f, 0.5f, 1f));
 //        set.setInterpolator(new PathInterpolator(.24f, .9f, .24f, 1f));
 
         set.playTogether(animatorY);
@@ -493,7 +506,7 @@ public class DialogManager {
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 1:
-                    pauseAnimation(set);
+//                    pauseAnimation(set);
                     break;
                 case 2:
                     set.start();
