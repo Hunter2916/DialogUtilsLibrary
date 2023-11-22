@@ -1,6 +1,7 @@
 package com.example.dialog.library.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,8 @@ import com.example.dialog.library.R
 import com.example.dialog.library.adapter.DialogAdapter
 import com.example.dialog.library.bean.DialogBean
 import kotlinx.android.synthetic.main.activity_main.*
+import java.security.AccessController.getContext
+
 
 class MainActivity : Activity() {
     val list = mutableListOf<DialogBean>()
@@ -16,8 +19,15 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
+        initCLick()
 
+    }
 
+    private fun initCLick() {
+        sample_text.setOnClickListener {
+            val intent = Intent(this, MainActivity3::class.java)
+            this.startActivity(intent)
+        }
     }
 
     private fun initView() {
