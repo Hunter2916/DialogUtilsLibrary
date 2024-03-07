@@ -328,4 +328,24 @@
 
     <color name="navy">#000080</color><!--海军色 -->
 
+    <color name="button_unselect_bg_color">#33FFFFFF</color>
+    <color name="button_select_bg_color">#6BD45F</color>
+    <color name="button_select_bg">#0DFFFFFF</color>
+
+    <color name="color_535353">#1F535353</color>
+    <color name="color_button_bg">@color/colorPrimary</color>
+    <color name="color_button_back_stroke_color">#363839</color>
+    <color name="color_scroll_bar_thumb_bg">#33272829</color>
+    <color name="color_radio_button_uncheck_color">#3F51B5</color>
+    <color name="color_radio_group_stroke_color">#5E6571</color>
+    <color name="color_radio_group_solid_color">#1AFFFFFF</color>
+    <color name="color_scroll_view_bar_track_color">#33A3ACBC</color>
+    <color name="color_update_info_text_color">#858D9B</color>
+    <color name="color_update_info_fold_button_text_color">#FF6424</color>
+    <color name="color_progress_bar_ring_color">#33FFFFFF</color>
+    <!-- 公共颜色   -->
+    <color name="color_text_color_1">#E0E5EC</color>
+    <color name="color_text_color_2">#A3ACBC</color>
+    <color name="color_software_version_text_bg_color">#0DFFFFE1</color>
+
 </resources>

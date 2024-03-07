@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -50,6 +50,21 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <declare-styleable name="ProgressBarView">
+        <attr name="ringColor" format="color" />
+        <attr name="ringProgressColor" format="color" />
+        <attr name="ringWidth" format="dimension" />
+        <attr name="ringTextColor" format="color" />
+        <attr name="ringTextSize" format="dimension" />
+        <attr name="max" format="integer" />
+    </declare-styleable>
 
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@drawable/fa_bg_dialog</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 
 </resources>

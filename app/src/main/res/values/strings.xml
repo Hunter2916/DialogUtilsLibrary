@@ -2,4 +2,27 @@
     <string name="app_name">DialogUtilsLibrary</string>
     <string name="close">关闭</string>
     <string name="complete">完成</string>
+
+    <!--    时间选择控件-->
+    <string name="picker_cancel_scheduled">取消本次预约</string>
+    <string name="picker_set_scheduled">确定预约</string>
+    <string name="picker_cancel_update">直接取消</string>
+    <string name="picker_dialog_title">预约时间更新</string>
+    <string name="picker_dialog_title_edit">修改预约时间</string>
+    <string name="picker_dialog_title_cancel">预约其他时间更新</string>
+    <string name="confirm_cancel_title">是否取消本次预约更新？</string>
+    <string name="confirm_cancel_reserve">取消预约</string>
+    <string name="dont_cancel_reserve">不取消</string>
+    <string name="picker_dialog_today_message">今日&#160;%s:%s&#160;进行更新</string>
+    <string name="picker_dialog_tomorrow_message">明日&#160;%s:%s&#160;进行更新</string>
+    <string name="picker_dialog_morning">上午</string>
+    <string name="picker_dialog_afternoon">下午</string>
+    <!--    预约更新Toast-->
+    <string name="modify_success">"修改成功"</string>
+    <string name="modify_failed">"修改失败"</string>
+    <string name="schedule_success">"预约成功"</string>
+    <string name="schedule_failed">"预约失败"</string>
+    <string name="schedule_tomorrow_success">"已预约凌晨更新"</string>
+    <string name="schedule_time_failure">"开始时间需晚于当前时间5分钟，请重新选择"</string>
+    <string name="gps_tip">弹框标题</string>
 </resources>

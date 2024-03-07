@@ -1,65 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_rounded_corners"
-    android:orientation="vertical">
+    android:background="@drawable/fa_bg_dialog"
+    android:padding="@dimen/fa_px_64">
 
     <!--通用对话框-->
     <ImageView
-        android:id="@+id/tv_custom_dialog_setting_image"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="25dp"
-        android:scaleType="fitCenter" />
+        android:id="@+id/img_close_button"
+        android:layout_width="@dimen/fa_px_84"
+        android:layout_height="@dimen/fa_px_84"
+        android:src="@drawable/ic_dialog_button_close"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tv_custom_dialog_setting_messageTopStr"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_dialog_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:focusable="false"
-        android:padding="8dp"
-        android:textColor="@color/baby_blue"
-        android:textSize="20sp" />
+        android:layout_marginStart="@dimen/fa_px_52"
+        android:layout_marginEnd="@dimen/fa_px_136"
+        android:gravity="center_horizontal"
+        android:text="Installing software update"
+        android:textColor="@color/color_text_color_1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_close_button"
+        app:layout_constraintStart_toEndOf="@+id/img_close_button"
+        app:layout_constraintTop_toTopOf="@+id/img_close_button" />
 
     <TextView
-        android:id="@+id/tv_custom_dialog_setting_messageMiddleStr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="8dp"
-        android:focusable="false"
-        android:textSize="16sp" />
-
-    <!--<View-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0.5dp"-->
-    <!--android:background="@color/home_line" />-->
-
-    <LinearLayout
+        android:id="@+id/txt_update_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="vertical">
+        android:lineHeight="@dimen/fa_px_50"
+        android:text="Lynk OS 16.6"
+        android:textColor="@color/color_radio_group_stroke_color"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dialog_title" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fa_px_506"
+        android:layout_marginTop="@dimen/fa_px_87"
+        android:fadeScrollbars="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbarStyle="insideInset"
+        android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
+        app:layout_constraintTop_toBottomOf="@+id/txt_update_version"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/fa_px_24">
+
+            <TextView
+                android:id="@+id/txt_update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimated installation time: 30 min"
+                android:textColor="@color/color_text_color_1"
+                android:textFontWeight="500"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/txt_update_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fa_px_48"
+                android:gravity="center_horizontal"
+                android:text="This software update includes the following:\n
+Climate v2.1, Spotify, Youtube Music, Wechat, Voice Assistant,\n Facebook Messenger, Whatsapp, X"
+                android:textColor="@color/color_text_color_1"
+                android:textFontWeight="400"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fa_px_112"
+        android:layout_marginTop="@dimen/fa_px_80"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
+        tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/tv_custom_dialog_setting_confirm"
-            android:layout_width="160dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_button_gradient_main_5"
+            android:id="@+id/btn_upgrade_now"
+            android:layout_width="@dimen/fa_px_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/fa_px_248"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:enabled="true"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="18sp" />
-    </LinearLayout>
-</LinearLayout>
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/btn_set_time"
+            android:layout_width="@dimen/fa_px_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/fa_px_64"
+            android:layout_marginEnd="@dimen/fa_px_248"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
